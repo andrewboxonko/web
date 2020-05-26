@@ -1,0 +1,64 @@
+.content-contact-page {
+  width: 100%;
+  background-color: #f7f1e3;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding-left: 10%;
+  padding-top: 6%;
+  padding-right: 5%;
+  height: 200%;
+  transform-origin: top left;
+  transition: 0.7s cubic-bezier(1, 0.005, 0.24, 1);
+}
+
+.map {
+  width: 72%;
+  height: 400px;
+  background-color: grey;
+}
+
+.info {
+  font-family: "Inconsolata", monospace;
+  font-size: 20px;
+  padding: 0 20px 0 20px;
+}
+
+.info-container {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  border: 3px solid #ffb8b8;
+}
+
+.contact-header {
+  text-align: center;
+  text-transform: uppercase;
+}
+
+@media only screen and (max-width: 800px) {
+  .content-contact-page {
+    height: 140%;
+    padding-top: 25%;
+  }
+  .content-contact-page .reserve {
+    margin-top: 15%;
+  }
+  .content-contact-page .reserve:after {
+    display: none;
+  }
+
+  .social-disappear {
+    display: none;
+  }
+
+  .info-container {
+    flex-direction: column;
+  }
+  .info-container .map {
+    width: 100%;
+  }
+}
+
+/*# sourceMappingURL=style-contact.css.map */
