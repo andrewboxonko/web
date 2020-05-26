@@ -1,0 +1,55 @@
+{% extends "base_generic.html" %}
+{% load static %}
+{% block title %}Checkout{% endblock %}
+
+{% block content %}
+<div class="content-menu-page">
+    <div class="image">
+            <a href="{% url 'index' %}"><img src="{% static 'images/logo-standalone.png' %}" alt="Split-logo" style="width: 100px; height: auto"></a>
+        </div>
+        <div class="social social-disappear">
+            <i class="fab fa-facebook"></i>
+            <i class="fab fa-twitter"></i>
+            <i class="fab fa-instagram"></i>
+            <i class="fab fa-telegram"></i>
+        </div>
+        <div class="reserve">
+            <a href=""><i class="fas fa-phone"></i> +38(077)-77-77-777 Reserve</a>
+            {% if user.is_authenticated %}
+                <a href="{% url 'dish_list' %}"><i class="fas fa-shopping-basket"></i> Order online</a>
+            {% endif%}
+        </div>
+        <div class="bucket">
+    {% with total_items=cart|length %}
+        {% if cart|length > 0 %}
+            Your cart:
+            <a href="{% url 'cart_detail' %}">
+                {{ total_items }} item{{ total_items|pluralize }},
+                ${{ cart.get_total_price }}
+            </a>
+        {% else %}
+            Your cart is empty.
+        {% endif %}
+    {% endwith %}
+    </div>
+    <h1>Checkout</h1>
+    <div class="order-info">
+        <h3>Your order</h3>
+        <ul>
+            {% for item in cart %}
+                <li>
+                    {{ item.quantity }}x {{ item.product.name }}
+                    <span>${{ item.total_price }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+        <p class="total-price">Total: ${{ cart.get_total_price }}</p>
+    </div>
+    <form action="." method="POST" class="order-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <p><input type="submit" value="Place order"></p>
+    </form>
+
+</div>
+{% endblock %}

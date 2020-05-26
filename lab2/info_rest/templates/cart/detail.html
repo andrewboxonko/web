@@ -1,0 +1,73 @@
+{% extends "base_generic.html" %}
+{% load static %}
+{% block title %}
+    Your shopping cart
+{% endblock %}
+{% block content %}
+{% if cart.count_items > 1 %}
+<html class="overflow_on" style="overflow-y: auto">
+{% else %}
+<html class="overflow_on" style="overflow-y: hidden">
+{% endif%}
+<body class="overflow_on">
+<div class="content-menu-page">
+        <div class="image">
+            <a href="{% url 'index' %}"><img src="{% static 'images/logo-standalone.png' %}" alt="Split-logo" style="width: 100px; height: auto"></a>
+        </div>
+        <div class="social social-disappear">
+            <i class="fab fa-facebook"></i>
+            <i class="fab fa-twitter"></i>
+            <i class="fab fa-instagram"></i>
+            <i class="fab fa-telegram"></i>
+        </div>
+        <div class="reserve">
+            <a href=""><i class="fas fa-phone"></i> +38(077)-77-77-777 Reserve</a>
+            {% if user.is_authenticated %}
+                <a href="{% url 'dish_list' %}"><i class="fas fa-shopping-basket"></i> Order online</a>
+            {% endif%}
+        </div>
+    <h2>Your food bucket</h2>
+    <table class="cart">
+            <tr>
+                <th class="left left-top">Image</th>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Remove</th>
+                <th>Unit price</th>
+                <th class="right-top">Price</th>
+            </tr>
+
+        {% for item in cart %}
+            {% with product=item.product %}
+                <tr>
+                    <td class="left">
+                        <a href="{{ product.get_absolute_url }}">
+                            <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'images/1.1.png' %}{% endif %}" style="width: 300px;">
+                        </a>
+                    </td>
+                    <td>{{ product.name }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td><a href="{% url 'cart_remove' product.id%}">Remove</a></td>
+                    <td class="num">${{ item.price }}</td>
+                    <td class="num">${{ item.total_price }}</td>
+                </tr>
+
+            {% endwith %}
+        {% endfor %}
+
+        <tr class="total">
+            <td class="left left-bottom">Total</td>
+            <td colspan="4"></td>
+            <td class="num right-bottom">${{ cart.get_total_price }}</td>
+        </tr>
+
+    </table>
+    <p class="text-right">
+        <a href="{% url 'dish_list' %}" class="button light">Continue shopping</a>
+        <a href="{% url 'order_create' %}" class="button">Checkout</a>
+
+    </p>
+    </div>
+</body>
+</html>
+{% endblock %}

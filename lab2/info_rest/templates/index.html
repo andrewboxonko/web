@@ -1,0 +1,53 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+{% load static %}
+<div class="content-main-page">
+        <div class="image">
+            <a href="{% url 'index' %}"><img src="{% static 'images/logo-standalone.png' %}" alt="Split-logo" style="width: 100px; height: auto"></a>
+        </div>
+        <div class="reserve">
+            <a href=""><i class="fas fa-phone"></i> +38(077)-77-77-777 Reserve</a>
+            {% if user.is_authenticated %}
+                <a href="{% url 'dish_list' %}"><i class="fas fa-shopping-basket"></i> Order online</a>
+            {% endif%}
+        </div>
+        <div class="textarea">
+        {% if user.is_authenticated %}
+            <h1>{% if user.get_short_name == '' %} {{user.username | title}}, welcome to Split
+                {% else %}{{user.get_short_name | title}}, welcome to Split{% endif%}</h1>
+        {% else %}
+            <h1>Welcome to Split</h1>
+        {% endif %}
+            <div class="social">
+                <i class="fab fa-facebook"></i>
+                <i class="fab fa-twitter"></i>
+                <i class="fab fa-instagram"></i>
+                <i class="fab fa-telegram"></i>
+            </div>
+        <p>In the heart of the old town you will find an oasis of relaxation, where all senses awaken.
+            The atmosphere of the institution is created with a combination of classics and
+            modernity in the interior. The exquisite design of the premium loft-style design will
+            facilitate relaxation and communication.
+            All design elements are exclusive custom made items.</p>
+        </div>
+            <div class="row">
+                <div class="column">
+                    <div class="pos-sign">Karaoke</div>
+                    <a class='read-more-link' href=""><img src="{% static 'images/caraoke.jpg' %}" alt="Snow" style="width:100%"></a>
+                    <div class="pos-read1 read-more"><a href="">Read more</a></div>
+                </div>
+                <div class="column">
+                    <div class="pos-sign">Restaurant</div>
+                    <a class='read-more-link' href=""><img src="{% static 'images/zoi.jpg' %}" alt="Forest" style="width:100%"></a>
+                    <div class="pos-read2 read-more"><a href="">Read more</a></div>
+                </div>
+                <div class="column">
+                    <div class="pos-sign">Night club</div>
+                    <a class='read-more-link' href=""><img src="{% static 'images/party.jpg' %}" alt="Mountains" style="width:100%"></a>
+                    <div class="pos-read3 read-more"><a href="">Read more</a></div>
+                </div>
+            </div>
+        </div>
+    <div class="empty" style="width: 100%; height: 150px"></div>
+{% endblock %}

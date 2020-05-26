@@ -1,0 +1,31 @@
+{% extends "base_generic.html" %}
+{% load static %}
+
+
+{% block content %}
+<div class="content-menu-page">
+        <div class="image">
+            <a href="{% url 'index' %}"><img src="{% static 'images/logo-standalone.png' %}" alt="Split-logo" style="width: 100px; height: auto"></a>
+        </div>
+        <div class="social social-disappear">
+            <i class="fab fa-facebook"></i>
+            <i class="fab fa-twitter"></i>
+            <i class="fab fa-instagram"></i>
+            <i class="fab fa-telegram"></i>
+        </div>
+        <div class="reserve">
+            <a href=""><i class="fas fa-phone"></i> +38(077)-77-77-777 Reserve</a>
+            {% if user.is_authenticated %}
+                <a href="{% url 'dish_list' %}"><i class="fas fa-shopping-basket"></i> Order online</a>
+            {% endif%}
+        </div>
+    <h1>Thank you</h1>
+    <p>Your order has been successfully completed. Your order number is
+        <strong>{{ order.id }}</strong>. Our manager will call you. See order detail below.</p>
+    <div class="your-order" id="your-order">
+
+    </div>
+    <script src="{% static 'js/ajax.js' %}"></script>
+    <a href="{% url 'index' %}" class="button button-pos">Go to main page</a>
+{% endblock %}
+</div>
