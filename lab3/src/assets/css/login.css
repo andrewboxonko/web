@@ -1,0 +1,284 @@
+* {
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    font-family: "Inconsolata", monospace;
+}
+
+.body-login {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    background-color: #f7f1e3;
+    font-family: "Inconsolata", monospace;
+}
+
+::placeholder {
+    font-family: "Inconsolata", monospace;
+    text-transform: uppercase;
+}
+
+.register, .login {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    position: fixed;
+    top: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #404040;
+    width: 60%;
+    height: 80%;
+    border-radius: 15px;
+}
+
+.container:after {
+    border-radius: 15px 15px 0 0;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 30px;
+    width: 100%;
+    background-color: #666666;
+}
+
+.left-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    text-align: center;
+    left: 10%;
+}
+
+.left-content h1 {
+    text-transform: uppercase;
+}
+
+.have_acc {
+    display: block;
+    margin-top: 10px;
+    text-decoration: none;
+    color: #ffb8b8;
+}
+
+.sign, .log {
+    color: #ffb8b8;
+}
+
+.log {
+    color: #f7f1e3;
+}
+
+.white{
+    color: #f7f1e3;
+}
+.users-icon {
+    font-size: 180px;
+    color: #ffb8b8;
+}
+
+.users-icon-log {
+    color: #f7f1e3;
+}
+
+.right-content {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 21%;
+    right: 10%;
+}
+
+.form-login {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 35%;
+    right: 10%;
+}
+
+.form-register a, .form-login a {
+    text-decoration: none;
+    color: #ffb8b8;
+    font-size: 20px;
+}
+
+.form-login a {
+    color: #f7f1e3;
+}
+
+input[type=submit] {
+    font-family: "Inconsolata", monospace;
+    color: #ffb8b8;
+    border: none;
+    background: none;
+    font-size: 20px;
+    margin-left: 10px;
+    outline: none;
+    cursor: pointer;
+}
+
+input[type=text], input[type=email], input[type=password], input[type=number] {
+    font-family: "Inconsolata", monospace;
+    color: #ffb8b8;
+    width: 250px;
+    display: block;
+    padding: 10px;
+    margin: 10px;
+    border: none;
+    background: none;
+    border-bottom: 3px solid #ffb8b8;
+    outline: none;
+}
+
+.form-login input[type=email], .form-login input[type=password] {
+    border-bottom: 3px solid #f7f1e3;
+    color: #f7f1e3;
+}
+
+.form-login input[type=submit] {
+    color: #f7f1e3;
+}
+
+.pos-btn {
+    margin-top: 5px;
+    float: right;
+}
+
+.red {
+    z-index: 1;
+    color: #fc5c65;
+    position: absolute;
+    top: 8px;
+    left: 10px;
+}
+
+.yellow {
+    z-index: 1;
+    color: #ffdd59;
+    position: absolute;
+    top: 8px;
+    left: 30px;
+}
+
+.green {
+    z-index: 1;
+    color: #20bf6b;
+    position: absolute;
+    top: 8px;
+    left: 50px;
+}
+
+.grey1 {
+    font-size: 5px;
+    color: #808e9b;
+    z-index: 1;
+    position: absolute;
+    top: 14px;
+    right: 39px;
+}
+
+.grey2 {
+    font-size: 5px;
+    color: #808e9b;
+    z-index: 1;
+    position: absolute;
+    top: 14px;
+    right: 32px;
+}
+
+.grey3 {
+    font-size: 5px;
+    color: #808e9b;
+    z-index: 1;
+    position: absolute;
+    top: 14px;
+    right: 25px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.have_acc:after {
+    display: block;
+    content: "";
+    border-bottom: solid 2px #ffb8b8;
+    transform: scaleX(0);
+    transition: transform 250ms ease-in-out;
+    transform-origin: 0 50%;
+}
+
+.white:after{
+    border-bottom: solid 2px #f7f1e3;
+}
+
+
+
+.have_acc:hover:after, .cancel-log:hover:before {
+    transform: scaleX(1);
+}
+
+.phone-h, .phone-have-acc {
+    display: none;
+}
+
+input[type=submit]:hover, .pos-btn a:hover {
+    opacity: 0.5;
+    transition: 0.3s;
+}
+
+.form-login input[type=text]{
+    color: #f7f1e3;
+    border-bottom: 3px solid #f7f1e3;
+}
+@media only screen and (max-width: 800px) {
+    .container {
+        width: 85%;
+        height: 85%;
+    }
+    .container .right-content, .container .form-login {
+        justify-content: center;
+        position: static;
+    }
+    .container .form-login {
+        margin-top: -5%;
+    }
+    .container .left-content {
+        display: none;
+    }
+    .container .phone-h {
+        text-transform: uppercase;
+        color: #ffb8b8;
+        display: block;
+        text-align: center;
+    }
+    .container .phone-have-acc {
+        display: block;
+        font-size: 15px;
+        color: #ffb8b8;
+        text-align: center;
+    }
+    .container .additional {
+        color: white;
+    }
+}
