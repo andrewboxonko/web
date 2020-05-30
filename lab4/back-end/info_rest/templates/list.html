@@ -1,0 +1,58 @@
+{% extends "base_generic.html" %}
+{% load static %}
+
+{% block content %}
+<div class="content-menu-page">
+    <div class="image">
+            <a href="index.html"><img src="{% static 'images/logo-standalone.png' %}" alt="Split-logo" style="width: 100px; height: auto"></a>
+        </div>
+        <div class="social social-disappear">
+            <i class="fab fa-facebook"></i>
+            <i class="fab fa-twitter"></i>
+            <i class="fab fa-instagram"></i>
+            <i class="fab fa-telegram"></i>
+        </div>
+        <div class="reserve">
+            <a href=""><i class="fas fa-phone"></i> +38(077)-77-77-777 Reserve</a>
+            {% if user.is_authenticated %}
+                <a href="{% url 'dish_list' %}"><i class="fas fa-shopping-basket"></i> Order online</a>
+            {% endif%}
+        </div>
+    <div class="bucket">
+    {% with total_items=cart|length %}
+        {% if cart|length > 0 %}
+            Your cart:
+            <a href="{% url 'cart_detail' %}">
+                {{ total_items }} item{{ total_items|pluralize }},
+                ${{ cart.get_total_price }}
+            </a>
+        {% else %}
+            Your cart is empty.
+        {% endif %}
+    {% endwith %}
+    </div>
+    <div class="container-dish">
+        <div id="sidebar" class="nav-category">
+            <h2>Categories</h2>
+            <ul>
+                <li class="selected"{% if not category %}{% endif %}>
+                    <a href="{% url 'dish_list' %}">All</a>
+                </li>
+                {% for c in categories %}
+                    <li class="selected" {% if category.slug == c.slug %}{% endif %}>
+                        <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <script src="{% static 'js/ajax.js' %}"></script>
+        <div id="main" class="product-list">
+            <h2>{% if category %}{{ category.name }}{% else %}Dishes{% endif %}</h2>
+            <div class="cont" id='list' style="display: flex; flex-direction: row">
+
+            </div>
+            <script src="{% static 'js/ajax.js' %}"></script>
+        </div>
+    </div>
+</div>
+{% endblock %}f

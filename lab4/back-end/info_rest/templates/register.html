@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+{% load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style-register.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="{% static 'js/script_form.js' %}"></script>
+</head>
+<body>
+<div class="register">
+    <div class="container">
+        <i class="fas fa-circle red"></i>
+        <i class="fas fa-circle yellow"></i>
+        <i class="fas fa-circle green"></i>
+        <i class="fas fa-circle grey1"></i>
+        <i class="fas fa-circle grey2"></i>
+        <i class="fas fa-circle grey3"></i>
+        <div class="left-content">
+            <h1 class="sign">Sign up</h1>
+            <i class="users-icon fas fa-users"></i>
+            <a class="have_acc" href="{% url 'login' %}">Already have an account</a>
+        </div>
+        <div class="right-content">
+            <form class="form-register"  method="POST" action="{% url 'register' %}">
+                <h1 class="phone-h">Sign up</h1>
+                {% csrf_token %}
+                {{form.as_p}}
+                {{profile_form.as_p}}
+                <a href="{% url 'login' %}"><p class="phone-have-acc">Already have account</p></a>
+                <div class="pos-btn">
+                    <a class="cancel" href="{% url 'index' %}">Cancel</a>
+                    <input type="submit" value="Create" class="btn" onclick="postSubmit()">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

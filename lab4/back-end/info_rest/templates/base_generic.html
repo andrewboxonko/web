@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  {% block title %}<title>Restaurant</title>{% endblock %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata&display=swap" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  {% load static %}
+    <link rel="script" href="{% static 'js/ajax.js' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style-food-menu.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style-online.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style-contact.css' %}">
+     <script>
+        function closeNav(){
+            document.body.style.overflowY = 'auto';
+        }
+        function openNav() {
+            document.body.style.overflowY = 'hidden';
+        }
+    </script>
+</head>
+
+<body>
+    {% block sidebar %}
+      <div class="menu">
+        <a href="javascript:void(0)" onclick="openNav()"><i class="menu_close menu-icons fa fa-times fa-lg"></i></a>
+        <a href="javascript:void(0)" onclick="closeNav()"><i class="menu_open menu-icons fa fa-bars fa-lg"></i></a>
+    </div>
+    <script>
+        $( ".menu" ).click(function() {
+            $( ".content-main-page").toggleClass( "change");
+            $( ".content-menu-page").toggleClass( "change");
+            $( ".content-contact-page").toggleClass( "change");
+            $( this ).toggleClass( "change1");
+            $( ".home-li" ).toggleClass( "move-home");
+            $( ".menu-li" ).toggleClass( "move-menu");
+            $( ".phone-li" ).toggleClass( "move-phone");
+            $( ".login-li" ).toggleClass( "move-login");
+            $( ".body" ).toggleClass( "scroll-bar");
+        });
+    </script>
+    <nav>
+        <ul class="menu_items">
+            <li class="home-li"><a href="{% url 'index' %}"><i class="icon icon-home fas fa-home"></i>Home</a></li>
+            <li class="menu-li"><a href="{% url 'menu_rest' %}"><i class="icon icon-menu fas fa-hamburger"></i>Menu</a></li>
+            {% if user.is_authenticated %}
+                <li class="login-li"><a href="{% url 'logout' %}"><i class="icon icon-log fas fa-sign-out-alt"></i>Logout</a></li>
+            {% else %}
+                <li class="login-li"><a href="{% url 'login' %}"><i class="icon icon-log fas fa-sign-in-alt"></i>Login</a></li>
+            {% endif %}
+            <li class="phone-li"><a href="{% url 'contact' %}"><i class="icon icon-phone fas fa-phone"></i>Contact info</a></li>
+        </ul>
+    </nav>
+     {% endblock %}
+      </div>
+      <div>
+      {% block content %}{% endblock %}
+      </div>
+</body>
+<script>
+    var slideIndex = 1;
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("dot");
+        if (n > slides.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = slides.length}
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex-1].style.display = "block";
+        dots[slideIndex-1].className += " active";
+    }
+</script>
+</html>

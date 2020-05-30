@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% load static%}
+<html lang="en" class="body-login">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style-register.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</head>
+<body class="body-login">
+<div class="login">
+    <div class="container">
+        <i class="fas fa-circle red"></i>
+        <i class="fas fa-circle yellow"></i>
+        <i class="fas fa-circle green"></i>
+        <i class="fas fa-circle grey1"></i>
+        <i class="fas fa-circle grey2"></i>
+        <i class="fas fa-circle grey3"></i>
+        <div class="left-content">
+            <h1 class="log">Login</h1>
+            <i class="users-icon users-icon-log fas fa-users"></i>
+            <a class="have_acc dont_have" href="{% url 'register' %}">Don't have an account</a>
+        </div>
+        <div class="right-content1">
+            <form class="form-login"  method="POST" action="{% url 'login' %}">
+                <h1 class="phone-h additional">Login</h1>
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div class="pos-btn">
+                    <a class="cancel-log" href="{% url 'index' %}">Cancel</a>
+                    <input type="submit" value="Login" class="btn">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
